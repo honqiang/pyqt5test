@@ -46,7 +46,7 @@ class Ui_MainWindow(object):
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setGeometry(QtCore.QRect(0, 0, 891, 491))
         self.tableWidget.setRowCount(5)
-        self.tableWidget.setColumnCount(14)
+        self.tableWidget.setColumnCount(6)
         self.tableWidget.setObjectName("tableWidget")
         self.btn_load = QtWidgets.QPushButton(self.centralwidget)
         self.btn_load.setGeometry(QtCore.QRect(400, 540, 93, 28))
