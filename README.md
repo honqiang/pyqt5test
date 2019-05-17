@@ -1,2 +1,2 @@
 # pyqt5test
-Show Data Into QTableWidget From Database.
+Show Data Into QTableWidget From postgresql.
