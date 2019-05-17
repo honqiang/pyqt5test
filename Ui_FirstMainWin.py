@@ -7,8 +7,37 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import psycopg2
+
 
 class Ui_MainWindow(object):
+    def loadData(self):
+        try:
+            host_ip = "192.168.17.146"
+            user = "postgres"
+            password = "postgres"
+            database = "testDB"
+            conn = psycopg2.connect(
+                host=f"{host_ip}", user=f"{user}", password=f"{password}", database=f"{database}")
+            print(f"连接{database}数据库成功")
+        except psycopg2.Error as e:
+            print(e)
+
+        try:
+            cur = conn.cursor()
+            sql = "SELECT * FROM customers"
+            cur.execute(sql)
+            result = cur.fetchall()
+            self.tableWidget.setRowCount(0)
+            for row_number, row_date in enumerate(result):
+                self.tableWidget.insertRow(row_number)
+                for colum_number, date in enumerate(row_date):
+                    self.tableWidget.setItem(row_number,colum_number,QtWidgets.QTableWidgetItem(str(date)))
+
+        except psycopg2.Error as e:
+            print(e)
+        conn.close()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(899, 670)
@@ -22,6 +51,7 @@ class Ui_MainWindow(object):
         self.btn_load = QtWidgets.QPushButton(self.centralwidget)
         self.btn_load.setGeometry(QtCore.QRect(400, 540, 93, 28))
         self.btn_load.setObjectName("btn_load")
+        self.btn_load.clicked.connect(self.loadData)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -44,4 +74,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
