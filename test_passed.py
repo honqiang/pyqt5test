@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'f:\编程\pyqt5\FirstMainWin.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.3
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 import psycopg2
 
 
 class Ui_MainWindow(object):
     def loadData(self):
+        table_name = "table_customers"
         try:
             host_ip = "192.168.17.146"
             user = "postgres"
@@ -25,7 +20,7 @@ class Ui_MainWindow(object):
 
         try:
             cur = conn.cursor()
-            table_name = "table_customers"
+
             sql = f"SELECT * FROM {table_name}"
             cur.execute(sql)
             result = cur.fetchall()
@@ -55,7 +50,7 @@ class Ui_MainWindow(object):
 
         try:
             cur = conn.cursor()
-            sql =f"SELECT tablename FROM pg_tables WHERE tablename NOT LIKE 'pg%' AND tablename NOT LIKE 'sql_%' ORDER BY tablename"
+            sql =f"SELECT tablename FROM pg_tables WHERE tablename NOT LIKE 'pg%' AND tablename NOT LIKE 'sql_%'  AND tablename NOT LIKE '%finished' ORDER BY tablename"
             cur.execute(sql)
             rows=cur.fetchall()
             for row in rows:
@@ -112,7 +107,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.btn_load.setText(_translate("MainWindow", "load"))
-        self.btn_gettablename.setText(_translate("MainWindow", "PushButton"))
+        self.btn_gettablename.setText(_translate("MainWindow", "获取表格"))
 
 
 if __name__ == "__main__":

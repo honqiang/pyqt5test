@@ -62,7 +62,7 @@
      <string>load</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -93,7 +93,7 @@
      <item>
       <widget class="QPushButton" name="btn_gettablename">
        <property name="text">
-        <string>PushButton</string>
+        <string>获取表格</string>
        </property>
       </widget>
      </item>
