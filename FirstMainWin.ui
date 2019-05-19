@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>899</width>
-    <height>670</height>
+    <width>893</width>
+    <height>686</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,15 +52,52 @@
    <widget class="QPushButton" name="btn_load">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>540</y>
-      <width>93</width>
+      <x>690</x>
+      <y>520</y>
+      <width>151</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
      <string>load</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>520</y>
+      <width>251</width>
+      <height>96</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>27</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <item>
+      <widget class="QComboBox" name="cbx_tablelist">
+       <property name="font">
+        <font>
+         <family>Adobe Arabic</family>
+         <pointsize>18</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_gettablename">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

@@ -11,12 +11,25 @@ except psycopg2.Error as e:
     print(e)
 
 
+# try:
+#     cur = conn.cursor()
+#     table_name="table_customers"
+#     sql =f"SELECT * FROM {table_name}"
+#     cur.execute(sql)
+#     rows=cur.fetchall()
+#     for row in rows:
+#         print(f"{list(enumerate(row))}")
+# except psycopg2.Error as e:
+#     print(e)
+
+
 try:
     cur = conn.cursor()
-    sql = "SELECT * FROM customers"
+    sql =f"SELECT tablename FROM pg_tables WHERE tablename NOT LIKE 'pg%' AND tablename NOT LIKE 'sql_%' ORDER BY tablename"
     cur.execute(sql)
     rows=cur.fetchall()
     for row in rows:
-        print(f"{list(enumerate(row))}")
+        print(f"{str(row[0])}")
 except psycopg2.Error as e:
     print(e)
+

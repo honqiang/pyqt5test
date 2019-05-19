@@ -13,37 +13,30 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="btn_closewin">
+  <widget class="QPushButton" name="btn_acquiretable">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>450</y>
+     <x>140</x>
+     <y>360</y>
      <width>93</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text">
-    <string>关闭窗口</string>
+    <string>获取表格</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>270</y>
+     <width>221</width>
+     <height>41</height>
+    </rect>
    </property>
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>btn_closewin</sender>
-   <signal>clicked()</signal>
-   <receiver>form_closewin</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>408</x>
-     <y>464</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>363</x>
-     <y>539</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
