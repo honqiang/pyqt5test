@@ -60,6 +60,7 @@ class Ui_MainWindow(object):
             self.btn_load.setEnabled(True)
         except psycopg2.Error as e:
             print(e)
+        conn.close()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")

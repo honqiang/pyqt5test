@@ -3,10 +3,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import psycopg2
 
-
+table_name = ""
 class Ui_MainWindow(object):
+
     def loadData(self):
-        table_name = "table_customers"
+        global table_name
+        table_name=self.cbx_tablelist.currentText()
         try:
             host_ip = "192.168.17.146"
             user = "postgres"
@@ -55,8 +57,10 @@ class Ui_MainWindow(object):
             rows=cur.fetchall()
             for row in rows:
                 self.cbx_tablelist.addItem(row[0])
+            self.btn_load.setEnabled(True)
         except psycopg2.Error as e:
             print(e)
+        conn.close()
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -71,6 +75,7 @@ class Ui_MainWindow(object):
         self.btn_load = QtWidgets.QPushButton(self.centralwidget)
         self.btn_load.setGeometry(QtCore.QRect(690, 520, 151, 28))
         self.btn_load.setObjectName("btn_load")
+        self.btn_load.setEnabled(False)
         self.btn_load.clicked.connect(self.loadData)        
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(30, 520, 251, 96))
@@ -89,6 +94,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.cbx_tablelist.setFont(font)
         self.cbx_tablelist.setObjectName("cbx_tablelist")
+
 
         self.verticalLayout.addWidget(self.cbx_tablelist)
         self.btn_gettablename = QtWidgets.QPushButton(self.widget)
