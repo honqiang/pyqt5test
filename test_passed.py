@@ -2,12 +2,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import psycopg2
+HorizontalHeaderLabels=[]
 
-table_name = ""
 class Ui_MainWindow(object):
-
     def loadData(self):
-        global table_name
         table_name=self.cbx_tablelist.currentText()
         try:
             host_ip = "192.168.17.146"
@@ -21,8 +19,21 @@ class Ui_MainWindow(object):
             print(e)
 
         try:
+            self.tableWidget.clear()
+            del HorizontalHeaderLabels[:]
             cur = conn.cursor()
+            sql =f"select * from information_schema.columns where table_schema='public' and table_name='{str(table_name)}';"
+            cur.execute(sql)
+            rows=cur.fetchall()
+            for row in rows:
+                HorizontalHeaderLabels.append(str(row[3])) 
+                print(HorizontalHeaderLabels)
+            self.tableWidget.setHorizontalHeaderLabels(HorizontalHeaderLabels)
+        except psycopg2.Error as e:
+            print(e)
 
+        try:
+            cur = conn.cursor()
             sql = f"SELECT * FROM {table_name}"
             cur.execute(sql)
             result = cur.fetchall()
@@ -37,6 +48,7 @@ class Ui_MainWindow(object):
         conn.close()
 
     def gettablename(self):
+
         try:
             host_ip = "192.168.17.146"
             user = "postgres"
@@ -51,6 +63,7 @@ class Ui_MainWindow(object):
             print(e)
 
         try:
+            self.cbx_tablelist.clear()
             cur = conn.cursor()
             sql =f"SELECT tablename FROM pg_tables WHERE tablename NOT LIKE 'pg%' AND tablename NOT LIKE 'sql_%'  AND tablename NOT LIKE '%finished' ORDER BY tablename"
             cur.execute(sql)
@@ -63,6 +76,7 @@ class Ui_MainWindow(object):
         conn.close()
 
     def setupUi(self, MainWindow):
+        global HorizontalHeaderLabels
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(893, 686)
         self.centralwidget = QtWidgets.QWidget(MainWindow)

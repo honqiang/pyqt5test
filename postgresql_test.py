@@ -23,13 +23,28 @@ except psycopg2.Error as e:
 #     print(e)
 
 
+# try:
+#     cur = conn.cursor()
+#     sql =f"SELECT tablename FROM pg_tables WHERE tablename NOT LIKE 'pg%' AND tablename NOT LIKE 'sql_%' ORDER BY tablename"
+#     cur.execute(sql)
+#     rows=cur.fetchall()
+#     for row in rows:
+#         print(f"{str(row[0])}")
+# except psycopg2.Error as e:
+#  
+#    print(e)
+HorizontalHeaderLabels=[]
+name='uuid_contacts'
+table_name=f'{str(name)}'
 try:
     cur = conn.cursor()
-    sql =f"SELECT tablename FROM pg_tables WHERE tablename NOT LIKE 'pg%' AND tablename NOT LIKE 'sql_%' ORDER BY tablename"
+    sql =f"select * from information_schema.columns where table_schema='public' and table_name='{table_name}';"
     cur.execute(sql)
     rows=cur.fetchall()
     for row in rows:
-        print(f"{str(row[0])}")
+        HorizontalHeaderLabels.append(str(row[3])) 
+        print(HorizontalHeaderLabels)
 except psycopg2.Error as e:
     print(e)
+
 

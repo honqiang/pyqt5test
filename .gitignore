@@ -1,2 +1,8 @@
 PyQt5快速开发与实战电子书.pdf
+/dist/*
+/build/*
+*.spec
+*.pyc
+
+
 
