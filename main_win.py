@@ -4,7 +4,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import psycopg2
 HorizontalHeaderLabels=[]
 
-class Ui_MainWindow(object):
+class first_mainwindow(QtWidgets.QMainWindow):
+
+    def  __init__(self):
+        super(first_mainwindow,self).__init__()
+        self.setupUi(self)
+        self.retranslateUi(self)
+
     def loadData(self):
         table_name=self.cbx_tablelist.currentText()
         try:
@@ -134,7 +140,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = first_mainwindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
