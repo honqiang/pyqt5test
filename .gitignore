@@ -3,6 +3,7 @@ PyQt5快速开发与实战电子书.pdf
 /build/*
 *.spec
 *.pyc
+/example/*
 
 
 
